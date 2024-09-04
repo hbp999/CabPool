@@ -1,0 +1,49 @@
+<div class="container mt-5">
+  <h1>Carpool Finder</h1>
+
+  <form (ngSubmit)="submitForm()" class="mb-5">
+    <div class="mb-3">
+      <label for="startLocation" class="form-label">Start Location:</label>
+      <input type="text" id="startLocation" name="startLocation" [(ngModel)]="startLocation" class="form-control" required>
+    </div>
+  
+    <div class="mb-3">
+      <label for="endLocation" class="form-label">End Location:</label>
+      <input type="text" id="endLocation" name="endLocation" [(ngModel)]="endLocation" class="form-control" required>
+    </div>
+  
+    <div class="mb-3">
+      <label for="availableSeats" class="form-label">Available Seats:</label>
+      <input type="number" id="availableSeats" name="availableSeats" [(ngModel)]="availableSeats" class="form-control" required>
+    </div>
+  
+    <div class="mb-3">
+      <label for="phoneNumber" class="form-label">Phone Number:</label>
+      <input type="tel" id="phoneNumber" name="phoneNumber" [(ngModel)]="phoneNumber" class="form-control" required>
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Submit Request</button>
+  </form>
+
+ 
+
+  <!-- Open Requests Section -->
+  <div *ngIf="requests.length > 0">
+    <h2>Open Requests</h2>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div class="col">
+        <div class="card">
+          <div class="card-body" *ngFor="let request of requests">
+            <ng-container *ngIf="request.status === 'Open'">
+              <h5 class="card-title">Start Location: {{ request.startLocation }}</h5>
+              <p class="card-text">End Location: {{ request.endLocation }}</p>
+              <p class="card-text">Available Seats: {{ request.availableSeats }}</p>
+              <button (click)="acceptRequest(request)" class="btn btn-success me-2">Accept Request</button>
+              <!-- Contact User button -->
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

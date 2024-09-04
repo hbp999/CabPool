@@ -1,0 +1,8 @@
+<!-- request-list.component.html -->
+<div *ngFor="let request of requests; let i = index">
+    <div>{{ request.startLocation }} - {{ request.destination }}</div>
+    <div>{{ request.car }} - Seats available: {{ request.seats }}</div>
+    <div>{{ request.phone }}</div>
+    <button (click)="acceptRequest(i)">Accept</button>
+  </div>
+  
